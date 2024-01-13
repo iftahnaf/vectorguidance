@@ -4,7 +4,7 @@ double a,b,c,d,e,j,k,l,p,q,t,z;
 double tgo;
 
 
-void explicit_solve(double x, int i){
+double explicit_solve(double x, int i){
     //explanation of variables
     //dy/dx= i* x3 + j*x2 + k*x + l. No i variable needed as it is normalised to 4.
     //depressed form of dy/dx: t3+pt+q. A subsitution is used to eliminate the squared term, see below.
@@ -15,21 +15,20 @@ void explicit_solve(double x, int i){
     double m=(x + b)*x*x*x + c*x*x + d*x + e;
     if (m == 0 | i == 99){
         // printf("z= %f x= %f y= %f iteration %d\n", z,x,m,i); 
-        tgo = x;
-        printf("[EXPLICIT] Minimum positive real root: %f\n", tgo);
+        return x;
     }
     else explicit_solve(x-m/(4*x*x*x + j*x*x + k*x + l), i+1);
     
 }
-void explicit_find_minimum_positive_real_root(void){
+double explicit_find_minimum_positive_real_root(const Eigen::Matrix<double,5,1> coeff){
         double r[8];
         //r[1,2,3] and r[5,6,7] store x and y values of the maxima and minima.
         //r[0] and r[4] are dummies to handle [subscript-1] references.
-        a = 6.734024999999999;
-        b = 0;
-        c =  -73.21148415361623;
-        d =  -316.0267504005409;
-        e =  -2368.9809380330944;
+        a = coeff[0];
+        b = coeff[1];
+        c = coeff[2];
+        d = coeff[3];
+        e = coeff[4];
         //uncomment for verbose output: 
         // printf("data for minima and maxima \n");
         //uncomment for verbose output: 
@@ -78,11 +77,11 @@ void explicit_find_minimum_positive_real_root(void){
         //opposite the highest stationary point, just in case that point also has y<0, to avoid getting trapped.
         //special case: if r[v]-r[u] == 0 (implies only one stationary point) then add 1!
         if (r[v+4] >0) printf("n\n");
-        if (r[v+4] <0) explicit_solve(r[v]+(r[v]-r[u])+(r[v]-r[u]==0),0);
+        if (r[v+4] <0) tgo = explicit_solve(r[v]+(r[v]-r[u])+(r[v]-r[u]==0),0);
+        return tgo;
 }
 
-void find_minimum_positive_real_root(void){
-    Eigen::Matrix<double,5,1> coeff(6.734024999999999, 0, -73.21148415361623, -316.0267504005409, -2368.9809380330944);
+double find_minimum_positive_real_root(const Eigen::Matrix<double,5,1> coeff){
     Eigen::PolynomialSolver<double, Eigen::Dynamic> solver;
     solver.compute(coeff.reverse());
     const Eigen::PolynomialSolver<double, Eigen::Dynamic>::RootsType &r = solver.roots();
@@ -94,5 +93,5 @@ void find_minimum_positive_real_root(void){
         }
     }
     // std::cout << "Roots of " << coeff.transpose() << " are: " << r.transpose() << std::endl;
-    printf("[EIGEN] Minimum positive real root: %f\n", tgo);
+    return tgo;
 }
