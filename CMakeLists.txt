@@ -8,3 +8,6 @@ find_package(Eigen3 REQUIRED)
 
 add_executable(main src/main.cpp src/common.cpp)
 target_include_directories(main PUBLIC ${EIGEN3_INCLUDE_DIR})
+
+add_executable(soft_landing src/soft_landing.cpp src/common.cpp)
+target_include_directories(soft_landing PUBLIC ${EIGEN3_INCLUDE_DIR})

@@ -18,4 +18,6 @@ int main(){
     stop = high_resolution_clock::now();
     duration = duration_cast<microseconds>(stop - start);
     std::cout << "using explicit, tgo = " << exp_tgo << ", measured time is: "<< duration.count() << "[microseconds]" << endl;
+    
+    return 0;
 }

@@ -12,6 +12,8 @@ class SoftLanding{
     private:
 
     public:
+        SoftLanding(void);
+        ~SoftLanding(void);
         double um;
         Eigen::Vector3d gravity;
         

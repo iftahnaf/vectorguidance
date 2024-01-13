@@ -1,16 +1,16 @@
 #include "../include/soft_landing.hpp"
 #include "../include/common.hpp"
 
-SoftLanding::SoftLanding(){
+SoftLanding::SoftLanding(void){
     this->um = 20.0;
     this->gravity << 0.0, 0.0, -9.81;
 }
 
-SoftLanding::~SoftLanding(){
+SoftLanding::~SoftLanding(void){
     return;
 }
 
-double SoftLanding::soft_landing_tgo_lq(const Eigen::Vector3d r, const Eigen::Vector3d v, double min_tgo=0.01){
+double SoftLanding::soft_landing_tgo_lq(const Eigen::Vector3d r, const Eigen::Vector3d v, double min_tgo){
     double tgo_f1, tgo_f2, um_1, um_2, tgo;
     Eigen::Matrix<double,5,1> f1;
     Eigen::Matrix<double,5,1> f2;
@@ -52,4 +52,21 @@ double SoftLanding::soft_landing_tgo_lq(const Eigen::Vector3d r, const Eigen::Ve
 Eigen::Vector3d SoftLanding::soft_landing_controller_lq(const Eigen::Vector3d r, const Eigen::Vector3d v, double tgo){
     Eigen::Vector3d u = (1.0 / (pow(tgo, 2))) * (6.0*r + 4.0*tgo*v) + this->gravity;
     return u;
+}
+
+int main(){
+    Eigen::Vector3d r, v, controller;
+
+    r << 0.0, 0.0, 110.0;
+    v << 0.0, 0.0, -10.0;
+
+    SoftLanding sl;
+
+    double tgo = sl.soft_landing_tgo_lq(r, v);
+    controller = sl.soft_landing_controller_lq(r, v, tgo);
+
+    std::cout << "tgo = " << tgo << std::endl;
+    std::cout << "controller = " << controller << std::endl;
+
+    return 0;
 }
