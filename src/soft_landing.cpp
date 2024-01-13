@@ -50,6 +50,6 @@ double SoftLanding::soft_landing_tgo_lq(const Eigen::Vector3d r, const Eigen::Ve
 }
 
 Eigen::Vector3d SoftLanding::soft_landing_controller_lq(const Eigen::Vector3d r, const Eigen::Vector3d v, double tgo){
-    Eigen::Vector3d u = (1 / (pow(tgo, 2))) * (6.0*r + 4.0*tgo*v) + this->gravity;
+    Eigen::Vector3d u = (1.0 / (pow(tgo, 2))) * (6.0*r + 4.0*tgo*v) + this->gravity;
     return u;
 }

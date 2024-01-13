@@ -59,5 +59,8 @@
         "typeinfo": "cpp",
         "dense": "cpp",
         "polynomials": "cpp"
-    }
+    },
+    "cSpell.words": [
+        "Eigen"
+    ]
 }
