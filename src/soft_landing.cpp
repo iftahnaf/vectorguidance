@@ -54,6 +54,7 @@ Eigen::Vector3d SoftLanding::soft_landing_controller_lq(const Eigen::Vector3d r,
     return u;
 }
 
+#ifndef USE_TEST
 int main(){
     Eigen::Vector3d r, v, controller;
 
@@ -70,3 +71,4 @@ int main(){
 
     return 0;
 }
+#endif
