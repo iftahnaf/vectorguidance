@@ -1,6 +1,7 @@
 #include "../include/common.hpp"
 
 double a,b,c,d,e,j,k,l,p,q,t,z;
+double tgo;
 
 //explanation of variables
 //dy/dx= i* x3 + j*x2 + k*x + l. No i variable needed as it is normalised to 4.
@@ -11,7 +12,11 @@ double a,b,c,d,e,j,k,l,p,q,t,z;
 // recursive newton-raphson to depth i
 void solve(double x, int i){
     double m=(x + b)*x*x*x + c*x*x + d*x + e;
-    if (m == 0 | i == 99)  printf("z= %f x= %f y= %f iteration %d\n", z,x,m,i); 
+    if (m == 0 | i == 99){
+        printf("z= %f x= %f y= %f iteration %d\n", z,x,m,i); 
+        tgo = x;
+        printf("Minimum positive real root: %f\n", tgo);
+    }
     else solve(x-m/(4*x*x*x + j*x*x + k*x + l), i+1);
     
 }
@@ -68,8 +73,6 @@ void roots(void){
         //if the lowest stationary point has y<0, use newton raphson, 99 iterations. ensure 1st guess is on the side 
         //opposite the highest stationary point, just in case that point also has y<0, to avoid getting trapped.
         //special case: if r[v]-r[u] == 0 (implies only one stationary point) then add 1!
-
         if (r[v+4] >0) printf("n\n");
-        if (r[v+4]==0) printf("z= %f x= %f multiple root", z,r[v]);
         if (r[v+4] <0) solve(r[v]+(r[v]-r[u])+(r[v]-r[u]==0),0);
 }

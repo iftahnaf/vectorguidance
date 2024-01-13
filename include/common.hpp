@@ -7,6 +7,8 @@
 #include "stdio.h"
 
 extern double a,b,c,d,e,j,k,l,p,q,t,z;
+extern double tgo;
+
 void solve(double x, int i);
 void roots(void);
 
