@@ -10,17 +10,16 @@ SoftLanding::~SoftLanding(){
     return;
 }
 
-double SoftLanding::soft_landing_tgo_lq(const Eigen::Vector3d r, const Eigen::Vector3d v , double um, Eigen::Vector3d g, double min_tgo=0.01){
+double SoftLanding::soft_landing_tgo_lq(const Eigen::Vector3d r, const Eigen::Vector3d v, double min_tgo=0.01){
     double tgo_f1, tgo_f2, um_1, um_2, tgo;
+    Eigen::Matrix<double,5,1> f1;
+    Eigen::Matrix<double,5,1> f2;
     
     double rr = r.norm();
     double vv = v.norm();
 
-    Eigen::Matrix<double,5,1> f1;
-    Eigen::Matrix<double,5,1> f2;
-
-    f1 << pow(um, 2) / 4.0, 0.0, -4.0 * pow(vv, 2), -12.0 * v.dot(r.transpose()), -9.0 * pow(rr, 2);
-    f2 << pow(um, 2) / 4.0, 0.0, -1.0 * pow(vv, 2), -6.0 * v.dot(r.transpose()), -9.0 * pow(rr, 2);
+    f1 << pow(this->um, 2) / 4.0, 0.0, -4.0 * pow(vv, 2), -12.0 * v.dot(r.transpose()), -9.0 * pow(rr, 2);
+    f2 << pow(this->um, 2) / 4.0, 0.0, -1.0 * pow(vv, 2), -6.0 * v.dot(r.transpose()), -9.0 * pow(rr, 2);
 
     try{
         tgo_f1 = explicit_find_minimum_positive_real_root(f1);
@@ -48,4 +47,9 @@ double SoftLanding::soft_landing_tgo_lq(const Eigen::Vector3d r, const Eigen::Ve
         tgo = min_tgo;
     }
     return tgo;
+}
+
+Eigen::Vector3d SoftLanding::soft_landing_controller_lq(const Eigen::Vector3d r, const Eigen::Vector3d v, double tgo){
+    Eigen::Vector3d u = (1 / (pow(tgo, 2))) * (6.0*r + 4.0*tgo*v) + this->gravity;
+    return u;
 }
