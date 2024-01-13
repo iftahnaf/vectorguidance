@@ -3,24 +3,25 @@
 double a,b,c,d,e,j,k,l,p,q,t,z;
 double tgo;
 
-//explanation of variables
-//dy/dx= i* x3 + j*x2 + k*x + l. No i variable needed as it is normalised to 4.
-//depressed form of dy/dx: t3+pt+q. A subsitution is used to eliminate the squared term, see below.
-//z=q2/4 + p3/27. z is proportional to the "discriminant." The sign tells the number of roots of dy/dx
-// +ve z means 1 real root, -ve z means 3 real roots, 0 means one simple root plus a double root. 
 
-// recursive newton-raphson to depth i
-void solve(double x, int i){
+void explicit_solve(double x, int i){
+    //explanation of variables
+    //dy/dx= i* x3 + j*x2 + k*x + l. No i variable needed as it is normalised to 4.
+    //depressed form of dy/dx: t3+pt+q. A subsitution is used to eliminate the squared term, see below.
+    //z=q2/4 + p3/27. z is proportional to the "discriminant." The sign tells the number of roots of dy/dx
+    // +ve z means 1 real root, -ve z means 3 real roots, 0 means one simple root plus a double root. 
+
+    // recursive newton-raphson to depth i
     double m=(x + b)*x*x*x + c*x*x + d*x + e;
     if (m == 0 | i == 99){
         printf("z= %f x= %f y= %f iteration %d\n", z,x,m,i); 
         tgo = x;
         printf("Minimum positive real root: %f\n", tgo);
     }
-    else solve(x-m/(4*x*x*x + j*x*x + k*x + l), i+1);
+    else explicit_solve(x-m/(4*x*x*x + j*x*x + k*x + l), i+1);
     
 }
-void roots(void){
+void explicit_find_minimum_positive_real_root(void){
         double r[8];
         //r[1,2,3] and r[5,6,7] store x and y values of the maxima and minima.
         //r[0] and r[4] are dummies to handle [subscript-1] references.
@@ -74,5 +75,21 @@ void roots(void){
         //opposite the highest stationary point, just in case that point also has y<0, to avoid getting trapped.
         //special case: if r[v]-r[u] == 0 (implies only one stationary point) then add 1!
         if (r[v+4] >0) printf("n\n");
-        if (r[v+4] <0) solve(r[v]+(r[v]-r[u])+(r[v]-r[u]==0),0);
+        if (r[v+4] <0) explicit_solve(r[v]+(r[v]-r[u])+(r[v]-r[u]==0),0);
+}
+
+void find_minimum_positive_real_root(void){
+    Eigen::Matrix<double,5,1> coeff(6.734024999999999, 0, -73.21148415361623, -316.0267504005409, -2368.9809380330944);
+    Eigen::PolynomialSolver<double, Eigen::Dynamic> solver;
+    solver.compute(coeff.reverse());
+    const Eigen::PolynomialSolver<double, Eigen::Dynamic>::RootsType &r = solver.roots();
+    // select the minimum positive real root that does not have an imaginary component
+    for (int i = 0; i < r.rows(); i++){
+        if (r(i).imag() == 0 && r(i).real() > 0){
+            tgo = r(i).real();
+            break;
+        }
+    }
+    std::cout << "Roots of " << coeff.transpose() << " are: " << r.transpose() << std::endl;
+    printf("Minimum positive real root: %f\n", tgo);
 }

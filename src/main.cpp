@@ -1,5 +1,5 @@
 #include "../include/common.hpp"
 
 int main(){
-    roots();
+    find_minimum_positive_real_root();
 }
