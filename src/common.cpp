@@ -14,9 +14,9 @@ void explicit_solve(double x, int i){
     // recursive newton-raphson to depth i
     double m=(x + b)*x*x*x + c*x*x + d*x + e;
     if (m == 0 | i == 99){
-        printf("z= %f x= %f y= %f iteration %d\n", z,x,m,i); 
+        // printf("z= %f x= %f y= %f iteration %d\n", z,x,m,i); 
         tgo = x;
-        printf("Minimum positive real root: %f\n", tgo);
+        printf("[EXPLICIT] Minimum positive real root: %f\n", tgo);
     }
     else explicit_solve(x-m/(4*x*x*x + j*x*x + k*x + l), i+1);
     
@@ -25,8 +25,11 @@ void explicit_find_minimum_positive_real_root(void){
         double r[8];
         //r[1,2,3] and r[5,6,7] store x and y values of the maxima and minima.
         //r[0] and r[4] are dummies to handle [subscript-1] references.
-        printf("Please Select a, b, c, d, e: ");
-        scanf("%lf %lf %lf %lf %lf", &a, &b, &c, &d, &e);
+        a = 6.734024999999999;
+        b = 0;
+        c =  -73.21148415361623;
+        d =  -316.0267504005409;
+        e =  -2368.9809380330944;
         //uncomment for verbose output: 
         // printf("data for minima and maxima \n");
         //uncomment for verbose output: 
@@ -90,6 +93,6 @@ void find_minimum_positive_real_root(void){
             break;
         }
     }
-    std::cout << "Roots of " << coeff.transpose() << " are: " << r.transpose() << std::endl;
-    printf("Minimum positive real root: %f\n", tgo);
+    // std::cout << "Roots of " << coeff.transpose() << " are: " << r.transpose() << std::endl;
+    printf("[EIGEN] Minimum positive real root: %f\n", tgo);
 }
