@@ -23,12 +23,10 @@ TEST(SoftLandingTest, ControllerCalculation) {
     double tgo = sl.soft_landing_tgo_lq(r, v);
     Eigen::Vector3d actual_controller = sl.soft_landing_controller_lq(r, v, tgo);
 
-    EXPECT_ANY_THROW(actual_controller.norm());
+    EXPECT_LE(actual_controller.norm(), sl.um);
 }
 
-#ifdef USE_TEST
 int main(int argc, char** argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
-#endif

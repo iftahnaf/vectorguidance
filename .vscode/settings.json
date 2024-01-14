@@ -58,7 +58,12 @@
         "cinttypes": "cpp",
         "typeinfo": "cpp",
         "dense": "cpp",
-        "polynomials": "cpp"
+        "polynomials": "cpp",
+        "core": "cpp",
+        "any": "cpp",
+        "optional": "cpp",
+        "iomanip": "cpp",
+        "variant": "cpp"
     },
     "cSpell.words": [
         "Eigen"
