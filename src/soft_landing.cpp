@@ -30,17 +30,9 @@ double SoftLanding::soft_landing_tgo_lq(const Eigen::Vector3d r, const Eigen::Ve
     um_1 = max_acceleration_f1.norm();
     um_2 = max_acceleration_f2.norm();
 
-    if (um_1 > um_2){
-        tgo = tgo_f1;
-    }
-    else{
-        tgo = tgo_f2;
-    }
+    tgo = (um_1 > um_2) ? tgo_f1 : tgo_f2;
 
-    if (tgo < min_tgo){
-        tgo = min_tgo;
-    }
-    return tgo;
+    return std::max(tgo, min_tgo);
 }
 
 Eigen::Vector3d SoftLanding::soft_landing_controller_lq(const Eigen::Vector3d r, const Eigen::Vector3d v, double tgo){
