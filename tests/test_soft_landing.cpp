@@ -10,7 +10,7 @@ TEST(SoftLandingTest, TgoCalculation) {
 
     double actual_tgo = sl.soft_landing_tgo_lq(r, v);
 
-    EXPECT_LT(actual_tgo, 0);
+    EXPECT_GT(actual_tgo, 0.0);
 }
 
 TEST(SoftLandingTest, ControllerCalculation) {

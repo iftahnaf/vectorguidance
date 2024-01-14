@@ -1,5 +1,7 @@
 #include "../include/soft_landing.hpp"
 #include "../include/common.hpp"
+#include <thread>
+#include <chrono>
 
 void integrate_state(Eigen::Vector3d &r, Eigen::Vector3d &v, Eigen::Vector3d &controller, double dt, SoftLanding &sl){
     Eigen::Vector3d u;
@@ -16,8 +18,8 @@ void integrate_state(Eigen::Vector3d &r, Eigen::Vector3d &v, Eigen::Vector3d &co
 int main(){
     Eigen::Vector3d rp, vp, controller, rt, vt, r, v;
 
-    rp << 0.0, 0.0, 110.0;
-    vp << 0.0, 0.0, -10.0;
+    rp << 240000.0, 0.0, 13000.0;
+    vp << -1800.0, 0.0, -10.0;
 
     rt << 0.0, 0.0, 0.0;
     vt << 0.0, 0.0, 0.0;
@@ -38,6 +40,7 @@ int main(){
 
         std::cout << "tgo = " << tgo <<  ", controller = (" << controller[0] << ", " << controller[1] << ", " << controller[2] << "), r = (" << rp[0] << ", " << rp[1] << ", " << rp[2] << "), v = (" << vp[0] << ", " << vp[1] << ", " << vp[2] << ")" << std::endl;
         counter++;
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
     std::cout << "Final Miss Distance: " << r.norm() << " [m], Final Miss Velocity: " << v.norm() << " [m/s], Total Time: " << counter * dt << " [s]"<< std::endl;
     return 0;
