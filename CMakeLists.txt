@@ -12,6 +12,9 @@ find_package(GTest REQUIRED)
 add_executable(example_soft_landing examples/example_soft_landing.cpp src/common.cpp src/soft_landing.cpp)
 target_include_directories(example_soft_landing PUBLIC ${EIGEN3_INCLUDE_DIR})
 
+add_executable(example_bounded_interception examples/example_bounded_interception.cpp src/common.cpp src/bounded_interception.cpp)
+target_include_directories(example_bounded_interception PUBLIC ${EIGEN3_INCLUDE_DIR})
+
 # Add the test executable
 add_executable(test_soft_landing tests/test_soft_landing.cpp src/common.cpp src/soft_landing.cpp)
 target_include_directories(test_soft_landing PUBLIC ${EIGEN3_INCLUDE_DIR})

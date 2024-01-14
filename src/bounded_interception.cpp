@@ -27,6 +27,6 @@ double BoundedInterception::bounded_interception_tgo(const Eigen::Vector3d r, co
 }
 
 Eigen::Vector3d BoundedInterception::bounded_interception_controller(const Eigen::Vector3d r, const Eigen::Vector3d v, double tgo){
-    Eigen::Vector3d u = (this->rho_u) * (r + tgo*v + this->gravity) / ((r + tgo*v + this->gravity).norm());
+    Eigen::Vector3d u = (this->rho_u) * (r + tgo*v) / ((r + tgo*v).norm()) + this->gravity;
     return u;
 }
