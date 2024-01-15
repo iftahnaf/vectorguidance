@@ -11,6 +11,14 @@ BoundedInterception::~BoundedInterception(void){
     return;
 }
 
+/**
+ * Calculates the bounded interception time-to-go (TGO) for a given position and velocity vector.
+ * 
+ * @param r The position vector of the target.
+ * @param v The velocity vector of the target.
+ * @param min_tgo The minimum time-to-go value.
+ * @return The bounded interception time-to-go.
+ */
 double BoundedInterception::bounded_interception_tgo(const Eigen::Vector3d r, const Eigen::Vector3d v, double min_tgo){
     double tgo, drho;
     Eigen::Matrix<double,5,1> f;

@@ -10,6 +10,14 @@ SoftLanding::~SoftLanding(void){
     return;
 }
 
+/**
+ * Calculates the time-to-go (TGO) for soft landing using the LQ method.
+ * 
+ * @param r The position vector.
+ * @param v The velocity vector.
+ * @param min_tgo The minimum time-to-go value.
+ * @return The calculated time-to-go for soft landing.
+ */
 double SoftLanding::soft_landing_tgo_lq(const Eigen::Vector3d r, const Eigen::Vector3d v, double min_tgo){
     double tgo_f1, tgo_f2, um_1, um_2, tgo;
     Eigen::Matrix<double,5,1> f1;
