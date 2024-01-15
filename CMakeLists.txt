@@ -14,17 +14,32 @@ add_library(vectorguidance STATIC
             src/bounded_interception.cpp
             src/soft_landing.cpp)
 target_include_directories(vectorguidance PUBLIC ${EIGEN3_INCLUDE_DIR})
+set_target_properties(vectorguidance PROPERTIES POSITION_INDEPENDENT_CODE ON)
+
+
+# Specify the installation directory for the library
+install(TARGETS vectorguidance
+    ARCHIVE DESTINATION lib
+    LIBRARY DESTINATION lib
+    RUNTIME DESTINATION bin
+)
+
+# Specify the installation directory for the header files
+install(DIRECTORY include/
+    DESTINATION include/vectorguidance
+    FILES_MATCHING PATTERN "*.hpp"
+)
 
 # Add the soft_landing executable
 option(BUILD_EXAMPLES "Build examples" ON)
 if (BUILD_EXAMPLES)
     add_executable(example_soft_landing examples/example_soft_landing.cpp)
     target_include_directories(example_soft_landing PUBLIC ${EIGEN3_INCLUDE_DIR})
-    target_link_libraries(example_soft_landing PRIVATE vectorguidance)
+    target_link_libraries(example_soft_landing PUBLIC vectorguidance)
 
     add_executable(example_bounded_interception examples/example_bounded_interception.cpp)
     target_include_directories(example_bounded_interception PUBLIC ${EIGEN3_INCLUDE_DIR})
-    target_link_libraries(example_bounded_interception PRIVATE vectorguidance)
+    target_link_libraries(example_bounded_interception PUBLIC vectorguidance)
 endif()
 
 # Conditionally add the test executable based on a flag
@@ -32,9 +47,9 @@ option(BUILD_TESTS "Build tests" ON)
 if(BUILD_TESTS)
     add_executable(test_soft_landing tests/test_soft_landing.cpp)
     target_include_directories(test_soft_landing PUBLIC ${EIGEN3_INCLUDE_DIR})
-    target_link_libraries(test_soft_landing PRIVATE vectorguidance GTest::GTest GTest::Main)
+    target_link_libraries(test_soft_landing PUBLIC vectorguidance GTest::GTest GTest::Main)
 
     add_executable(test_bounded_interception tests/test_bounded_interception.cpp)
     target_include_directories(test_bounded_interception PUBLIC ${EIGEN3_INCLUDE_DIR})
-    target_link_libraries(test_bounded_interception PRIVATE vectorguidance GTest::GTest GTest::Main)
+    target_link_libraries(test_bounded_interception PUBLIC vectorguidance GTest::GTest GTest::Main)
 endif()
