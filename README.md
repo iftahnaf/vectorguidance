@@ -1,6 +1,27 @@
-# Project Name
+![OS](https://img.shields.io/badge/OS-Linux-red?style=flat&logo=linux)
+[![Docker](https://img.shields.io/badge/Docker-available-green.svg?style=flat&logo=docker)](https://github.com/emalderson/ThePhish/tree/master/docker)
+[![Maintenance](https://img.shields.io/badge/Maintained-yes-green.svg)](https://github.com/iftahnaf/vectorguidance)
+[![GitHub](https://img.shields.io/github/license/iftahnaf/vectorguidance)](https://github.com/iftahnaf/vectorguidance/blob/main/LICENSE)
 
-A brief description of the project.
+# vectorguidance
+
+Vector Guidance are 3D optimal control methods for aerial systems.
+
+The guidance laws based on a controller that minimized an finite LQ cost function with the form of:
+
+$$ J = \|\mathbf{y(t_f)}\| + k \int_{t_0}^{t_f} \|\mathbf{u(t)}\|^2 dt $$
+
+Where:
+- $y$ is the Zero-Effort-Miss (ZEM) / Zero-Effort-Velocity (ZEV) variable.
+- $k$ is the weight on the integration part of the cost.
+- $u$ is the controller.
+- $t_0$ is the initial time and $t_f$ is the final time.
+
+Because the controller that minimized the LQ cost function is unbound, we define the maximum acceleration of the system as $u_m$, such that:
+
+$\|\mathbf{u}\| \leq u_m$ while $t_0 \leq t \leq t_f$
+
+**Note**: The value of $u_m$ is determined by the physical properties of the system (eg. thrusters saturations, aerodynamical constants)
 
 ## Table of Contents
 
