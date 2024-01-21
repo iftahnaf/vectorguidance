@@ -1,7 +1,7 @@
 ![OS](https://img.shields.io/badge/OS-Linux-red?style=flat&logo=linux)
 [![Docker](https://img.shields.io/badge/Docker-available-green.svg?style=flat&logo=docker)](https://github.com/emalderson/ThePhish/tree/master/docker)
 [![Maintenance](https://img.shields.io/badge/Maintained-yes-green.svg)](https://github.com/iftahnaf/vectorguidance)
-[![GitHub](https://img.shields.io/github/license/iftahnaf/vectorguidance)](https://github.com/iftahnaf/vectorguidance/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # vectorguidance
 
