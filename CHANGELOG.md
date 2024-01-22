@@ -2,6 +2,49 @@
 
 
 
+## v0.1.1 (2024-01-22)
+
+### Ci
+
+* ci(labler): fix configuration file ([`4e8f61f`](https://github.com/iftahnaf/vectorguidance/commit/4e8f61f80b6ef0ef3e73576259f2da72dbe18eab))
+
+* ci(labeler): adding configuration file ([`2135647`](https://github.com/iftahnaf/vectorguidance/commit/2135647c0a2b9b59650398f4f9a5336661b6f658))
+
+### Documentation
+
+* docs(readme): update ([`59f2feb`](https://github.com/iftahnaf/vectorguidance/commit/59f2feb55a60f1c8b1417f3a879b604e998f4242))
+
+* docs(readme): update ([`a761ab7`](https://github.com/iftahnaf/vectorguidance/commit/a761ab77bdd563141c65caa75b8af62c18efdc02))
+
+### Fix
+
+* fix(examples): reduce sleep between iterations ([`72b1f0b`](https://github.com/iftahnaf/vectorguidance/commit/72b1f0b50593c8c6ad41908ec4915038bbdb1fa6))
+
+### Unknown
+
+* Merge pull request #6 from iftahnaf/fix/examples
+
+fix(examples): reduce sleep between iterations ([`d1b2bba`](https://github.com/iftahnaf/vectorguidance/commit/d1b2bba95745de7a6b1aa8cbac8365d1e003be1f))
+
+* Update labeler.yml ([`73993d4`](https://github.com/iftahnaf/vectorguidance/commit/73993d461ed5f7dc2098bb6241a19647f97fe999))
+
+* Merge pull request #5 from iftahnaf/ci/fix-labeler
+
+ci(labler): fix configuration file ([`47c76e1`](https://github.com/iftahnaf/vectorguidance/commit/47c76e1132f6e3744ef9577f237cc2b8b8dbf297))
+
+* Merge pull request #4 from iftahnaf/docs/readme
+
+docs(readme): update ([`3554b2a`](https://github.com/iftahnaf/vectorguidance/commit/3554b2a3022d84c3a7727cca7d0b163effa2f34d))
+
+* Merge pull request #3 from iftahnaf/ci/labeler
+
+ci(labeler): adding configuration file ([`2ac6031`](https://github.com/iftahnaf/vectorguidance/commit/2ac60312bdc08de085e3348ffe3664effd61d1fb))
+
+* Merge pull request #2 from iftahnaf/docs/readme
+
+docs(readme): update ([`3cd9cba`](https://github.com/iftahnaf/vectorguidance/commit/3cd9cba73e52b7c0268db0f1670fd88529d06e2f))
+
+
 ## v0.1.0 (2024-01-16)
 
 ### Ci
