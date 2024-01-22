@@ -1,7 +1,9 @@
 # Add 'Documentation' label to any changes within 'docs' folder or any subfolders
 documentation:
-    - changed-files:
-        - any-glob-to-any-file: [docs/**, *.md]
+- changed-files:
+    - any-glob-to-any-file: [docs/**, *.md]
+- head-branch: ['^docs', 'docs']
+    
         
 # Add 'source' label to any change to src files within the source dir EXCEPT for the docs sub-folder
 source:
@@ -32,4 +34,5 @@ devcontainer:
 ci:
 - changed-files:
     - any-glob-to-any-file: '.github/**/*'
+- head-branch: ['^ci', 'ci']
     
