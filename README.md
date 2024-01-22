@@ -96,8 +96,34 @@ int main(){
 
 ## Contributing
 
-Guidelines on how to contribute to the project and any code of conduct.
+Thank you for considering contributing to Vector Guidance! Contributions are welcome, and we appreciate your help in improving this project. To get started, please follow these guidelines:
+
+1. Fork the repository and create your branch from `main`.
+2. Make your changes, ensuring that your code adheres to the project's coding style.
+3. Write clear and concise commit messages.
+4. Test your changes thoroughly.
+5. Open a pull request, providing a detailed description of your changes and the problem or feature they address.
+
+### Bug Reports and Feature Requests
+
+If you find any bugs or have suggestions for new features, please open an issue on the [issue tracker](https://github.com/iftahnaf/vectorguidance/issues).
+
+### Development Setup
+
+To set up the development environment, follow the [Installation](#installation) instructions in the README. Additionally, consider running the tests to ensure everything is functioning as expected.
+
+### Pull Request Guidelines
+
+When submitting a pull request, make sure to:
+
+- Clearly describe the problem or feature.
+- Provide steps to reproduce the issue if it's a bug.
+- Include relevant test cases.
+- Ensure that your code passes the existing tests.
+
+We appreciate your contributions to Vector Guidance!
+
 
 ## License
 
-Information about the project's license and any additional terms.
+This project can being use via [MIT license](./LICENSE)
