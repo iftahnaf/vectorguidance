@@ -1,7 +1,7 @@
 # Add 'Documentation' label to any changes within 'docs' folder or any subfolders
 documentation:
 - changed-files:
-    - any-glob-to-any-file: 'docs/**'
+    - any-glob-to-any-file: ['docs/**', '**/*.md']
 - head-branch: ['^docs', 'docs']
     
         

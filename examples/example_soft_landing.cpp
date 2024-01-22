@@ -18,8 +18,8 @@ void integrate_state(Eigen::Vector3d &r, Eigen::Vector3d &v, Eigen::Vector3d &co
 int main(){
     Eigen::Vector3d rp, vp, controller, rt, vt, r, v;
 
-    rp << 240000.0, 0.0, 13000.0;
-    vp << -1800.0, 0.0, -10.0;
+    rp << 24000.0, 0.0, 1300.0;
+    vp << -180.0, 0.0, -10.0;
 
     rt << 0.0, 0.0, 0.0;
     vt << 0.0, 0.0, 0.0;
