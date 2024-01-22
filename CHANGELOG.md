@@ -2,6 +2,21 @@
 
 
 
+## v0.1.2 (2024-01-22)
+
+### Fix
+
+* fix(example): change ic ([`b22ac05`](https://github.com/iftahnaf/vectorguidance/commit/b22ac059362f99a0db7794a5eab3d910d4d2bc6d))
+
+### Unknown
+
+* Merge pull request #7 from iftahnaf/fix/example
+
+fix(example): change ic ([`3c4cee6`](https://github.com/iftahnaf/vectorguidance/commit/3c4cee64ce4ba091316b01d0f133af941968ee10))
+
+* Update labeler.yml ([`48da4b4`](https://github.com/iftahnaf/vectorguidance/commit/48da4b4a9ce4002191e612b76e3a74452f12040b))
+
+
 ## v0.1.1 (2024-01-22)
 
 ### Ci
