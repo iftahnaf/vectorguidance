@@ -33,8 +33,8 @@ int main(){
         r = rt - rp;
         v = vt - vp;
 
-        double tgo = sl.soft_landing_tgo_lq(r, v);
-        controller = sl.soft_landing_controller_lq(r, v, tgo);
+        double tgo = sl.soft_landing_tgo_bounded(r, v);
+        controller = sl.soft_landing_controller_bounded(r, v, tgo);
 
         integrate_state(rp, vp, controller, dt, sl);
 

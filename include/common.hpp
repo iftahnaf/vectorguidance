@@ -14,5 +14,6 @@ extern double tgo;
 double explicit_solve(double x, int i);
 double explicit_find_minimum_positive_real_root(const Eigen::Matrix<double,5,1> coeff);
 double find_minimum_positive_real_root(const Eigen::Matrix<double,5,1> coeff);
+double find_maximum_positive_real_root(const Eigen::Matrix<double,5,1> coeff);
 
 #endif
