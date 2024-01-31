@@ -3,6 +3,37 @@
 double a,b,c,d,e,j,k,l,p,q,t,z;
 double tgo;
 
+double analytic_solve(double a, double b, double c, double d, double e){
+// analytic solution for the minimum positive real root of a quartic polynomial
+// see https://en.wikipedia.org/wiki/Quartic_function#General_formula_for_roots
+// note that this solution is not always stable
+    double p = (8*a*c - 3*b*b)/(8*a*a);
+    double q = (b*b*b - 4*a*b*c + 8*a*a*d)/(8*a*a*a);
+    double r = (-3*b*b*b*b + 256*a*a*a*e - 64*a*a*b*d + 16*a*b*b*c)/(256*a*a*a*a);
+    double A = -p/2;
+    double B = -p*p/12 - r;
+    double C = -q*q/108 + p*q/3 - r*p/3;
+    double D = -B*B*B/27 - C*C/4;
+    double tgo = 0;
+    if (D > 0){
+        double S = cbrt(-C/2 + sqrt(D));
+        double T = cbrt(-C/2 - sqrt(D));
+        tgo = S + T - p/3;
+    }
+    else if (D == 0){
+        double S = cbrt(-C/2);
+        double T = cbrt(-C/2);
+        tgo = S + T - p/3;
+    }
+    else {
+        double S = 2*sqrt(-B/3)*cos(acos(3*C/(2*B)*sqrt(-3/B))/3);
+        double T = 2*sqrt(-B/3)*cos(acos(3*C/(2*B)*sqrt(-3/B))/3 + 2*M_PI/3);
+        double U = 2*sqrt(-B/3)*cos(acos(3*C/(2*B)*sqrt(-3/B))/3 + 4*M_PI/3);
+        tgo = S + T + U - p/3;
+    }
+    return tgo;
+    
+}
 
 double explicit_solve(double x, int i){
     //explanation of variables

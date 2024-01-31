@@ -11,6 +11,7 @@
 extern double a,b,c,d,e,j,k,l,p,q,t,z;
 extern double tgo;
 
+double analytic_solve(double a, double b, double c, double d, double e);
 double explicit_solve(double x, int i);
 double explicit_find_minimum_positive_real_root(const Eigen::Matrix<double,5,1> coeff);
 double find_minimum_positive_real_root(const Eigen::Matrix<double,5,1> coeff);
