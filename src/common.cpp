@@ -114,3 +114,7 @@ double find_maximum_positive_real_root(const Eigen::Matrix<double,5,1> coeff){
     // std::cout << "Roots of " << coeff.transpose() << " are: " << r.transpose() << std::endl;
     return tgo;
 }
+
+double tgo_guard(double tgo, double current_tgo){
+    return std::min(tgo, current_tgo);
+}
