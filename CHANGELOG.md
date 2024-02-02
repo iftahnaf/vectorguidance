@@ -2,6 +2,23 @@
 
 
 
+## v0.2.0 (2024-02-02)
+
+### Feature
+
+* feat: adding implementation of bounded soft landing ([`0fb12ce`](https://github.com/iftahnaf/vectorguidance/commit/0fb12ced7960166e7114af8695319f777a1762d7))
+
+### Fix
+
+* fix(soft_landing_bounded_tgo): fixing calculation formulas ([`e2cb4fa`](https://github.com/iftahnaf/vectorguidance/commit/e2cb4fa3ae3aafc266dc88b5a7d03040149a9664))
+
+### Unknown
+
+* Merge pull request #8 from iftahnaf/feat/bounded_soft_landing
+
+fix(bounded_soft_landing): working version ([`d33fb1b`](https://github.com/iftahnaf/vectorguidance/commit/d33fb1b2e2ee07f0cd626883e66b4f2a43f81010))
+
+
 ## v0.1.2 (2024-01-22)
 
 ### Fix
