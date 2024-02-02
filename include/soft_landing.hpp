@@ -18,7 +18,9 @@ class SoftLanding{
         Eigen::Vector3d gravity;
         
         double soft_landing_tgo_lq(const Eigen::Vector3d r, const Eigen::Vector3d v, double min_tgo=0.01);
+        double soft_landing_tgo_bounded(const Eigen::Vector3d r, const Eigen::Vector3d v, double min_tgo=0.01);
         Eigen::Vector3d soft_landing_controller_lq(const Eigen::Vector3d r, const Eigen::Vector3d v, double tgo);
+        Eigen::Vector3d soft_landing_controller_bounded(const Eigen::Vector3d r, const Eigen::Vector3d v, double tgo);
 };
 
 #endif

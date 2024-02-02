@@ -37,6 +37,10 @@ if (BUILD_EXAMPLES)
     target_include_directories(example_soft_landing PUBLIC ${EIGEN3_INCLUDE_DIR})
     target_link_libraries(example_soft_landing PUBLIC vectorguidance)
 
+    add_executable(example_soft_landing_bounded examples/example_soft_landing_bounded.cpp)
+    target_include_directories(example_soft_landing_bounded PUBLIC ${EIGEN3_INCLUDE_DIR})
+    target_link_libraries(example_soft_landing_bounded PUBLIC vectorguidance)
+
     add_executable(example_bounded_interception examples/example_bounded_interception.cpp)
     target_include_directories(example_bounded_interception PUBLIC ${EIGEN3_INCLUDE_DIR})
     target_link_libraries(example_bounded_interception PUBLIC vectorguidance)

@@ -82,6 +82,7 @@ double explicit_find_minimum_positive_real_root(const Eigen::Matrix<double,5,1> 
 }
 
 double find_minimum_positive_real_root(const Eigen::Matrix<double,5,1> coeff){
+    double tmp_solution; 
     Eigen::PolynomialSolver<double, Eigen::Dynamic> solver;
     solver.compute(coeff.reverse());
     const Eigen::PolynomialSolver<double, Eigen::Dynamic>::RootsType &r = solver.roots();
@@ -89,9 +90,31 @@ double find_minimum_positive_real_root(const Eigen::Matrix<double,5,1> coeff){
     for (int i = 0; i < r.rows(); i++){
         if (r(i).imag() == 0 && r(i).real() > 0){
             tgo = r(i).real();
-            break;
+            if (i==0) tmp_solution = tgo;
+            if (tgo < tmp_solution) tmp_solution = tgo;
         }
     }
     // std::cout << "Roots of " << coeff.transpose() << " are: " << r.transpose() << std::endl;
     return tgo;
+}
+
+double find_maximum_positive_real_root(const Eigen::Matrix<double,5,1> coeff){
+    double tmp_solution;
+    Eigen::PolynomialSolver<double, Eigen::Dynamic> solver;
+    solver.compute(coeff.reverse());
+    const Eigen::PolynomialSolver<double, Eigen::Dynamic>::RootsType &r = solver.roots();
+    // select the maximum positive real root that does not have an imaginary component
+    for (int i = 0; i < r.rows(); i++){
+        if (r(i).imag() == 0 && r(i).real() > 0){
+            tgo = r(i).real();
+            if (i==0) tmp_solution = tgo;
+            if (tgo > tmp_solution) tmp_solution = tgo;
+        }
+    }
+    // std::cout << "Roots of " << coeff.transpose() << " are: " << r.transpose() << std::endl;
+    return tgo;
+}
+
+double tgo_guard(double tgo, double current_tgo){
+    return std::min(tgo, current_tgo);
 }
