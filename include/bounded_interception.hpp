@@ -20,7 +20,7 @@ class BoundedInterception{
         double r[3];
         double v[3];
         double u[3];
-        Eigen::Vector3d gravity;
+        double gravity[3];
         
         double bounded_interception_tgo(double* r, double* v, double min_tgo=0.01);
         void bounded_interception_controller(double* r, double* v, double* u, double tgo);

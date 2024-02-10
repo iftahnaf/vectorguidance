@@ -21,7 +21,7 @@ TEST(BoundedInterceptionTest, ControllerCalculation) {
     double tgo = bi.bounded_interception_tgo(r, v);
     bi.bounded_interception_controller(r, v, bi.u, tgo);
 
-    EXPECT_LE(sqrt(bi.u[0]*bi.u[0] + bi.u[1]*bi.u[1]+ bi.u[2]*bi.u[2]), bi.rho_u + bi.gravity.norm());
+    EXPECT_LE(sqrt(bi.u[0]*bi.u[0] + bi.u[1]*bi.u[1]+ bi.u[2]*bi.u[2]), bi.rho_u + std::sqrt(bi.gravity[2]*bi.gravity[2]));
 }
 
 int main(int argc, char** argv) {

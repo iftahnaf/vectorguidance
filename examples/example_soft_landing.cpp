@@ -3,45 +3,63 @@
 #include <thread>
 #include <chrono>
 
-void integrate_state(Eigen::Vector3d &r, Eigen::Vector3d &v, Eigen::Vector3d &controller, double dt, SoftLanding &sl){
-    Eigen::Vector3d u;
-    u << controller[0], controller[1], controller[2];
+void integrate_state(double* r, double* v, double* controller, double dt, SoftLanding &sl) {
+    double a[3];
 
-    u = u - sl.gravity;
+    for (int i = 0; i < 3; ++i) {
+        a[i] = (controller[i] - sl.gravity[i]);
 
-    v = v + u*dt;
-    r = r + v*dt + 0.5*u*dt*dt;
-
-    return;
+        v[i] += a[i] * dt;
+        r[i] += v[i] * dt + 0.5 * a[i] * dt * dt;
+    }
 }
 
 int main(){
-    Eigen::Vector3d rp, vp, controller, rt, vt, r, v;
+    double r_norm, v_norm;
 
-    rp << 1000.0, 0.0, 2000.0;
-    vp << -30.0, 0.0, -10.0;
+    double rp[3] = {1000.0, 0.0, 2000.0};
+    double vp[3] = {-30.0, 0.0, -10.0};
 
-    rt << 0.0, 0.0, 0.0;
-    vt << 0.0, 0.0, 0.0;
+    double rt[3] = {0.0, 0.0, 0.0};
+    double vt[3] = {0.0, 0.0, 0.0};
 
     SoftLanding sl;
 
     float dt = 0.01;
     int counter = 0;
 
-    while(rp[2] > 0.0){
-        r = rt - rp;
-        v = vt - vp;
+    float tmp_miss_distance = 0;
 
-        double tgo = sl.soft_landing_tgo_lq(r, v);
-        controller = sl.soft_landing_controller_lq(r, v, tgo);
-
-        integrate_state(rp, vp, controller, dt, sl);
-
-        std::cout << "tgo = " << tgo <<  ", controller = (" << controller[0] << ", " << controller[1] << ", " << controller[2] << "), r = (" << rp[0] << ", " << rp[1] << ", " << rp[2] << "), v = (" << vp[0] << ", " << vp[1] << ", " << vp[2] << ")" << std::endl;
-        counter++;
-        std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    for (int i = 0; i < 3; ++i) {
+        tmp_miss_distance += std::abs(rt[i]) + std::abs(rp[i]);
     }
-    std::cout << "Final Miss Distance: " << r.norm() << " [m], Final Miss Velocity: " << v.norm() << " [m/s], Total Time: " << counter * dt << " [s]"<< std::endl;
+
+    while(true){
+        for (int i = 0; i < 3; ++i) {
+            sl.r[i] = rt[i] - rp[i];
+            sl.v[i] = vt[i] - vp[i];
+        }
+
+        r_norm = std::sqrt(sl.r[0]*sl.r[0] + sl.r[1]*sl.r[1] + sl.r[2]*sl.r[2]);
+        v_norm = std::sqrt(sl.v[0]*sl.v[0] + sl.v[1]*sl.v[1] + sl.v[2]*sl.v[2]);
+
+        // no second-pass interception
+        if (r_norm > tmp_miss_distance){
+            break;
+        }
+        else{
+            tmp_miss_distance = r_norm;
+        }
+
+        double tgo = sl.soft_landing_tgo_lq(sl.r, sl.v);
+        sl.soft_landing_controller_lq(sl.r, sl.v, sl.u, tgo);
+
+        integrate_state(rp, vp,  sl.u, dt, sl);
+
+        std::cout << "tgo = " << tgo <<  ", controller = (" << sl.u[0] << ", " << sl.u[1] << ", " << sl.u[2] << "), r = (" << rp[0] << ", " << rp[1] << ", " << rp[2] << "), v = (" << vp[0] << ", " << vp[1] << ", " << vp[2] << ")" << std::endl;
+        counter++;
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+    std::cout << "Final Miss Distance: " << r_norm << " [m], Final Miss Velocity: " << v_norm << " [m/s], Total Time: " << counter * dt << " [s]"<< std::endl;
     return 0;
 }

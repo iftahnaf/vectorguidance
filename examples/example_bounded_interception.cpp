@@ -19,7 +19,7 @@ int main(){
     double vp[3] = {0.0, 0.0, 0.0};
 
     double rt[3] = {100.0, 0.0, 100.0};
-    double vt[3] =  {0.0, 0.0, 0.0};
+    double vt[3] = {0.0, 0.0, 0.0};
 
     float r_norm;
     float v_norm;

@@ -4,7 +4,9 @@
 BoundedInterception::BoundedInterception(void){
     this->rho_u = 20.0;
     this ->rho_w = 10.0;
-    this->gravity << 0.0, 0.0, -9.81;
+    this->gravity[0] = 0.0;
+    this->gravity[1] = 0.0;
+    this->gravity[2] = -9.81;
 }
 
 BoundedInterception::~BoundedInterception(void){

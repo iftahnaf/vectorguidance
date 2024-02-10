@@ -15,12 +15,15 @@ class SoftLanding{
         SoftLanding(void);
         ~SoftLanding(void);
         double um;
-        Eigen::Vector3d gravity;
+        double r[3];
+        double v[3];
+        double u[3];
+        double gravity[3];
         
-        double soft_landing_tgo_lq(const Eigen::Vector3d r, const Eigen::Vector3d v, double min_tgo=0.01);
-        double soft_landing_tgo_bounded(const Eigen::Vector3d r, const Eigen::Vector3d v, double min_tgo=0.01);
-        Eigen::Vector3d soft_landing_controller_lq(const Eigen::Vector3d r, const Eigen::Vector3d v, double tgo);
-        Eigen::Vector3d soft_landing_controller_bounded(const Eigen::Vector3d r, const Eigen::Vector3d v, double tgo);
+        double soft_landing_tgo_lq(double* r, double* v, double min_tgo=0.01);
+        double soft_landing_tgo_bounded(double* r, double* v, double min_tgo=0.01);
+        void soft_landing_controller_lq(double* r, double* v, double* u, double tgo);
+        void soft_landing_controller_bounded(double* r, double* v, double* u,  double tgo);
 };
 
 #endif
