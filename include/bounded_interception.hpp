@@ -5,6 +5,7 @@
 #include <Eigen/Geometry>
 #include <unsupported/Eigen/Polynomials>
 #include "math.h"
+#include <cmath>
 #include "stdio.h"
 #include <iostream>
 
@@ -16,10 +17,13 @@ class BoundedInterception{
         ~BoundedInterception(void);
         double rho_u;
         double rho_w;
-        Eigen::Vector3d gravity;
+        double r[3];
+        double v[3];
+        double u[3];
+        double gravity[3];
         
-        double bounded_interception_tgo(const Eigen::Vector3d r, const Eigen::Vector3d v, double min_tgo=0.01);
-        Eigen::Vector3d bounded_interception_controller(const Eigen::Vector3d r, const Eigen::Vector3d v, double tgo);
+        double bounded_interception_tgo(double* r, double* v, double min_tgo=0.01);
+        void bounded_interception_controller(double* r, double* v, double* u, double tgo);
 };
 
 #endif

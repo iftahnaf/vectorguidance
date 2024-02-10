@@ -4,9 +4,8 @@
 TEST(SoftLandingTest, TgoCalculation) {
     SoftLanding sl;
 
-    Eigen::Vector3d r, v;
-    r << 0.0, 0.0, 110.0;
-    v << 0.0, 0.0, -10.0;
+    double r[3] = {0.0, 0.0, 110.0};
+    double v[3] = {0.0, 0.0, -10.0};
 
     double actual_tgo = sl.soft_landing_tgo_lq(r, v);
 
@@ -16,14 +15,13 @@ TEST(SoftLandingTest, TgoCalculation) {
 TEST(SoftLandingTest, ControllerCalculation) {
     SoftLanding sl;
 
-    Eigen::Vector3d r, v;
-    r << 0.0, 0.0, 110.0;
-    v << 0.0, 0.0, -10.0;
+    double r[3] = {0.0, 0.0, 110.0};
+    double v[3] = {0.0, 0.0, -10.0};
 
     double tgo = sl.soft_landing_tgo_lq(r, v);
-    Eigen::Vector3d actual_controller = sl.soft_landing_controller_lq(r, v, tgo);
+    sl.soft_landing_controller_lq(r, v, sl.u, tgo);
 
-    EXPECT_LE(actual_controller.norm(), sl.um);
+    EXPECT_LE(std::sqrt(sl.u[0]*sl.u[0] + sl.u[1]*sl.u[1] + sl.u[2]*sl.u[2]), sl.um);
 }
 
 int main(int argc, char** argv) {
