@@ -4,9 +4,8 @@
 TEST(BoundedInterceptionTest, TgoCalculation) {
     BoundedInterception bi;
 
-    Eigen::Vector3d r, v;
-    r << 100.0, 0.0, 110.0;
-    v << 0.0, 0.0, -10.0;
+    double r[3] = {100.0, 0.0, 110.0};
+    double v[3] = {0.0, 0.0, -10.0};
 
     double actual_tgo = bi.bounded_interception_tgo(r, v);
 
@@ -16,14 +15,13 @@ TEST(BoundedInterceptionTest, TgoCalculation) {
 TEST(BoundedInterceptionTest, ControllerCalculation) {
     BoundedInterception bi;
 
-    Eigen::Vector3d r, v;
-    r << 100.0, 0.0, 110.0;
-    v << 0.0, 0.0, -10.0;
+    double r[3] = {100.0, 0.0, 110.0};
+    double v[3] = {0.0, 0.0, -10.0};
 
     double tgo = bi.bounded_interception_tgo(r, v);
-    Eigen::Vector3d actual_controller = bi.bounded_interception_controller(r, v, tgo);
+    bi.bounded_interception_controller(r, v, bi.u, tgo);
 
-    EXPECT_LE(actual_controller.norm(), bi.rho_u + bi.gravity.norm());
+    EXPECT_LE(sqrt(bi.u[0]*bi.u[0] + bi.u[1]*bi.u[1]+ bi.u[2]*bi.u[2]), bi.rho_u + bi.gravity.norm());
 }
 
 int main(int argc, char** argv) {
