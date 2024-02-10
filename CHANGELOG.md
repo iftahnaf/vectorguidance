@@ -2,6 +2,17 @@
 
 
 
+## v0.2.1 (2024-02-10)
+
+### Fix
+
+* fix(project): less usage of eigen (#9)
+
+* fix: bounded interception without alot of eigen
+
+* fix: soft landing not using eigen ([`e9f7d9f`](https://github.com/iftahnaf/vectorguidance/commit/e9f7d9f19da81daacdcf7bcdf827e47ebc34f670))
+
+
 ## v0.2.0 (2024-02-02)
 
 ### Feature
